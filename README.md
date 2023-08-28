@@ -117,5 +117,6 @@ Containerized platform developed by Red Hat, a subsidiary of IBM.It simplies the
 ` oc login -u kubeadmin -p kubeadmin-password https://api.ocpinstall.basedomain:6443 `
 
 ## 5. Minimumal Openshift Architecture
+<img width="1079" alt="Drawing2 (2)" src="https://github.com/welcomemncube/OpenShift-IPI-Installation-on-vSphere/assets/39636648/f069b75d-1a63-40b3-a0f7-bf04187e95c6">
 
 
