@@ -11,10 +11,11 @@
 Containerized platform developed by Red Hat, a subsidiary of IBM.It simplies the process of deploying, managing and scaling contairized applications.
 
 ## 2. Prerequistes
-* oc tool - For managing the cluster resources 
+* oc - For managing the cluster resources 
 * Podman - For managing your containers local 
 * openshift-install - For perfoming Openshift installation 
 * Pull secret - For authenticating with image repositories
+* ssh-key - For accessing nodes
 * RedHat Subscription
 
 ## 3. Requirements
@@ -30,24 +31,33 @@ Containerized platform developed by Red Hat, a subsidiary of IBM.It simplies the
   | Worker-1    | 1   | RHCOS | ip address        | 8 CPUs | 32 GB    | 120 GB     |
 
 ### Network requirements 
-* Network Subnet: For your applications (Whitelisted IPs)
 
   |  Usage      |   Value    |
   | ---    | ---   |
   |     NTP   |   x.x.x.x   |
   |    DHCP    |  x.x.x.x - x.x.x.x     |
   |     Port   |   80, 443, 6443   |
-  |     DNS   |   api.cluster_name. cp4i-cluster.example.com,  *.apps.cp4i-cluster.example.com |
+  |     API   |   x.x.x.x (Whitelisted)  |
+  |     Ingress   |   x.x.x.x (Whitelisted)  |
+  |     clustername   |   your cluster name  |
+  |     base domain   |   example.com  |
+  |     DNS   |   api.cluster_name. cp4i-cluster.example.com;  *.apps.cp4i-cluster.example.com |
+  
+  
 
 ### VSphere Requirements 
-### Special IPs 
-* API IP: Performs load balancing between master nodes 
-* API calls DNS entry:
+* Need account with global administrative privileges.
+  |  Usage      |   Value    |
+  | ---    | ---   |
+  |   vSphere     |     |
+  |   Datastore     |     |
+  |   vCenter     |     |
+  |   vCenter username     |     |
+  |   vCenter password     |     |
+  |   datacenter     |     |
+  |   vSphere folder     |     |
+  |   vSphere ResourcePool     |     |
   
-  =>api.cluster_name. cp4i-cluster.example.com 
-
-Ingress IP:  Performs load balancing between worker nodes 
-                   Also used for route creation with the below DNS entry:               *.apps.cluster_name.base_domain eg *.apps.cp4i-cluster.example.com 
 
 ## 4. Setting up the environment
 ### Ensure CA certificates from vCenter are trusted 
@@ -85,7 +95,7 @@ Ingress IP:  Performs load balancing between worker nodes
 
 ### Generate a key pair for cluster node SSH access 
 
-` ssh-keygen -t rsa -b 4096 `
+` ssh-keygen -t ed25519 -N '' -f ~/.ssh/id_core `
 
 ### Create the Install Config file (install-config.yaml-> yaml for defining installation parameters) 
 ` openshift-install create install-config `
@@ -100,9 +110,11 @@ Ingress IP:  Performs load balancing between worker nodes
 
 
 ### Create the cluster 
-oc login -u kubeadmin -p kubeadmin-password https://api.ocpinstall.basedomain:6443
 
 ` openshift-install create cluster --dir ocpinstall --log-level debug `
+
+### Accessing the cluster via CLI
+` oc login -u kubeadmin -p kubeadmin-password https://api.ocpinstall.basedomain:6443 `
 
 ## 5. Minimumal Openshift Architecture
 
