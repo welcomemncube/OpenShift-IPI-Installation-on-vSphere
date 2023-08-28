@@ -67,8 +67,11 @@ Containerized platform developed by Red Hat, a subsidiary of IBM.It simplies the
 
 ` cp install-config.yaml install-config.yaml.bak `
 
+
 ## Create the cluster 
 
 ` openshift-install create cluster --dir ocpinstall --log-level debug `
 
-Access the cluster using the OpenShift CLI 
+
+
+
