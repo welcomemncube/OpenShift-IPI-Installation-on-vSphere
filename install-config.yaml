@@ -1,0 +1,54 @@
+apiVersion: v1 
+baseDomain: <you-domain-name> 
+compute: 
+- architecture: amd64             
+  hyperthreading: Enabled                  
+  name: worker 
+  platform: 
+    vsphere: 
+      cpus: 8 
+      coresPerSocket: 8 
+      memoryMB: 32768 
+      osDisk: 
+        diskSizeGB: 120 
+  replicas: 2 
+controlPlane: 
+  architecture: amd64 
+  hyperthreading: Enabled 
+  name: master 
+  platform: 
+    vsphere: 
+      cpus: 4 
+      coresPerSocket: 8 
+      memoryMB: 16384 
+      osDisk: 
+        diskSizeGB: 120 
+  replicas: 3 
+metadata: 
+  creationTimestamp: null 
+  name: ocpinstall 
+networking: 
+  clusterNetwork: 
+  - cidr: 10.128.0.0/14 
+    hostPrefix: 23 
+  machineNetwork: 
+  - cidr: 192.168.252.0/27 
+  networkType: OpenShiftSDN 
+  serviceNetwork: 
+  - 172.30.0.0/16 
+platform: 
+  vsphere: 
+    apiVIP: <api-ip> 
+    cluster: <cluster-name> 
+    datacenter: <datacenter> 
+    defaultDatastore: <your-datastore> 
+    ingressVIP: <Ingress IP> 
+    network: <yournetwork name>
+    password: <vcenter-password> 
+    username: <vcenter-user>
+    vCenter: vcenter domain 
+    folder:  
+    resourcePool: 
+publish: External 
+pullSecret: 'Your pull from https://console.redhat.com/openshift/install/pull-secret' 
+sshKey: <Your ssh key> 
