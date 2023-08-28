@@ -30,15 +30,16 @@ Containerized platform developed by Red Hat, a subsidiary of IBM.It simplies the
   | Worker-1    | 1   | RHCOS | ip address        | 8 CPUs | 32 GB    | 120 GB     |
 
 ## Network requirements 
-* Network Subnet: For your applications (Whitelisted IPs) 
+* Network Subnet: For your applications (Whitelisted IPs)
 
-* DHCP: DHCP is required to provide initial network connectivity to your nodes so it can download its ignition configuration file. If there are no static IPs. 
+  |  Usage      |   Value    |
+  | ---    | ---   |
+  |     NTP   |   x.x.x.x   |
+  |    DHCP    |  x.x.x.x - x.x.x.x     |
+  |     Port   |   80, 443, 6443   |
+  |     DNS   |   api.cluster_name. cp4i-cluster.example.com,  *.apps.cp4i-cluster.example.com |
 
-* DNS: DNS is required to provide information on LoadBalancer endpoints for configuration 
-
-* NTP: Time synchronization across all cluster nodes 
-* Port:  80, 443, 6443 
-
+## VSphere Requirements 
 ## Special IPs 
 * API IP: Performs load balancing between master nodes 
 * API calls DNS entry:
