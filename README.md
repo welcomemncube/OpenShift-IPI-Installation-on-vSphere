@@ -74,4 +74,3 @@ Containerized platform developed by Red Hat, a subsidiary of IBM.It simplies the
 
 
 
-
