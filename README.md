@@ -4,7 +4,7 @@
 1. What is Openshift? 
 2. Prerequistes  
 3. Requirements
-4. Setting up the environment  
+4. Setting up the environment on Bastion Host
 5. Minimum Viable Architecture 
 
  ## 1. What is Openshift?
@@ -41,7 +41,7 @@ Containerized platform developed by Red Hat, a subsidiary of IBM.It simplies the
   |     Ingress   |   x.x.x.x (Whitelisted)  |
   |     clustername   |   your cluster name  |
   |     base domain   |   example.com  |
-  |     DNS   |   api.cluster_name. cp4i-cluster.example.com;  *.apps.cp4i-cluster.example.com |
+  |     DNS   |   api.cp4i-cluster.example.com;  *.apps.cp4i-cluster.example.com |
   
   
 
@@ -59,7 +59,7 @@ Containerized platform developed by Red Hat, a subsidiary of IBM.It simplies the
   |   vSphere ResourcePool     |     |
   
 
-## 4. Setting up the environment
+## 4. Setting up the environment on the Bastion Host
 ### Ensure CA certificates from vCenter are trusted 
 
 ` curl -kL https://vcenter-domain/certs/download.zip -o download.zip `  
